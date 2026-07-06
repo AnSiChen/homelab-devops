@@ -1,5 +1,13 @@
 # Self-Hosted Deployment Platform
 
+| Infrastructure | Reverse Proxy |
+|----------------|---------------|
+| ![](screenshots/digitalocean-dashboard.png) | ![](screenshots/nginx-proxy-manager.png) |
+
+| Deployment | Server |
+|------------|--------|
+| ![](screenshots/github-actions.png) | ![](screenshots/htop.png) |
+
 A reusable self-hosted infrastructure for deploying and managing multiple containerized applications on a Linux VPS.
 
 I've built this repo to document the architecture, deployment workflows, and engineering decisions behind my personal DevOps environment. Instead of configuring each application independently, I built a standardized deployment platform that supports multiple projects, automated deployments, reverse proxy routing, HTTPS, and isolated application environments.
@@ -46,6 +54,8 @@ Today the server hosts multiple independent web applications using a shared depl
 
 ## Infrastructure
 
+![DigitalOcean Droplet](screenshots/digitalocean-dashboard.png)
+
 ![Infrastructure Diagram](diagrams/infrastructure.svg)
 
 ---
@@ -71,6 +81,8 @@ Today the server hosts multiple independent web applications using a shared depl
 Applications usually follow a repeatable deployment pipeline.
 
 ![Deployment Workflow Diagram](diagrams/deployment-flow.svg)
+
+![GitHub Actions Workflow](screenshots/github-actions.png)
 
 Not every project requires CI/CD or migrations. Smaller or infrequently updated applications may be maintained manually through SSH while I still follow the same containerized deployment strategy.
 
@@ -118,6 +130,8 @@ Applications communicate through a shared external Docker network.
 ```
 hubstation
 ```
+
+![Nginx Proxy Manager](screenshots/nginx-proxy-manager.png)
 
 Using a shared network helps the reverse proxy communicate with individual application containers while keeping each application's internal configuration self-contained.
 
@@ -168,6 +182,8 @@ Building and maintaining this platform has given me practical experience with:
 - Deployment standardization
 - Infrastructure troubleshooting
 - Operating multiple applications from a single VPS
+
+![Server Monitoring](screenshots/htop.png)
 
 ---
 
